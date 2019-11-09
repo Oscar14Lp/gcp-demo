@@ -20,8 +20,8 @@ handlers:
 - url: /.*
   script: this field is required, but ignored
 
-health_check: 
-  enable_health_check: False
+#health_check: 
+#  enable_health_check: False
  
 resources:
   cpu: 1
