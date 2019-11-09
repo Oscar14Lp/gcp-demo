@@ -1,20 +1,24 @@
 package com.cirrocode.gcp.demo.service.impl;
 
-import com.cirrocode.gcp.demo.dao.MensajesBigQueryDAO;
-import com.cirrocode.gcp.demo.entity.Saludo;
-import com.cirrocode.gcp.demo.repository.SaludoRepository;
-import com.cirrocode.gcp.demo.service.SaludoService;
-import com.cirrocode.logging.LoggingComponent;
-import io.swagger.model.HolaResponse;
-import io.swagger.model.MensajesResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.cirrocode.gcp.demo.dao.MensajesBigQueryDAO;
+import com.cirrocode.gcp.demo.entity.Saludo;
+import com.cirrocode.gcp.demo.repository.SaludoRepository;
+import com.cirrocode.gcp.demo.service.SaludoService;
+import com.cirrocode.logging.LoggingComponent;
+
+import io.swagger.model.HolaResponse;
+import io.swagger.model.MensajesResponse;
 
 /**
  *
@@ -64,5 +68,27 @@ public class SaludoServiceImpl implements SaludoService
             LOGGER.error("Ocurrio un error al recuperar los mensajes", e);
         }
         return results;
+    }
+    
+    @Override
+    public List<MensajesResponse> leerMensajesPostgres() 
+    {
+    	List<MensajesResponse> results = new ArrayList<>();
+    	
+    	final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYY HH:mm:ss");
+    	
+        final Iterable<Saludo> allMessages = this.saludoRepository.findAll();
+    	if (null != allMessages)
+    	{
+    		allMessages.forEach((saludo) -> {
+    			MensajesResponse mensajesResponse = new MensajesResponse();
+    			mensajesResponse.setFregistro(sdf.format(saludo.getFechaCreacion()));
+    			mensajesResponse.setMensaje(saludo.getMensaje());
+    			
+    			results.add(mensajesResponse);
+    		});
+    	}        
+        
+    	return results;
     }
 }

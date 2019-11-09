@@ -28,7 +28,7 @@ public class MensajesApiController implements MensajesApi {
     @Autowired SaludoService saludoService;
 
     public ResponseEntity<List<MensajesResponse>> leerMensajes() {
-        final List<MensajesResponse> leerMensajesBigQuery = this.saludoService.leerMensajesBigQuery();
+        final List<MensajesResponse> leerMensajesBigQuery = this.saludoService.leerMensajesPostgres();
         return new ResponseEntity<>(leerMensajesBigQuery, HttpStatus.OK);
     }
 

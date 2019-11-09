@@ -13,4 +13,6 @@ public interface SaludoService
     HolaResponse saludar(String nombre);
     
     List<MensajesResponse> leerMensajesBigQuery();
+    
+    List<MensajesResponse> leerMensajesPostgres();
 }
