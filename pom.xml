@@ -16,7 +16,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<springfox-version>2.6.1</springfox-version>
-		<appengine.maven.plugin>2.2.0</appengine.maven.plugin>
+		<appengine.maven.plugin>1.3.1</appengine.maven.plugin>
 		<hibernate.version>5.2.11.Final</hibernate.version>
 
 		<!-- INSTANCE_CONNECTION_NAME from Cloud Console > SQL > Instance Details 
@@ -60,10 +60,10 @@
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>appengine-maven-plugin</artifactId>
 				<version>${appengine.maven.plugin}</version>
-				<configuration>
-					<deploy.projectId>cirrocode-dev</deploy.projectId>
-					<deploy.version>development</deploy.version>
-				</configuration>
+<!-- 				<configuration> -->
+<!-- 					<deploy.projectId>cirrocode-dev</deploy.projectId> -->
+<!-- 					<deploy.version>development</deploy.version> -->
+<!-- 				</configuration> -->
 			</plugin>
 			<!-- END plugin -->
 			<plugin>
