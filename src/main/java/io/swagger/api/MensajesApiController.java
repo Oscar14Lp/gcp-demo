@@ -33,11 +33,10 @@ public class MensajesApiController implements MensajesApi {
     }
     
     public ResponseEntity<MensajesResponse> deleteMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo) {
-    	final MensajesResponse mensajeObtenido = this.saludoService.obtenerMensaje(idSaludo);
+    	final MensajesResponse mensajeObtenido = this.saludoService.eliminarMensaje(idSaludo);
         return new ResponseEntity<MensajesResponse>(mensajeObtenido, HttpStatus.OK);
     }
-
-    public ResponseEntity<MensajesResponse> editMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo,@ApiParam(value = "Nuevo saludo" ,required=true )  @Valid @RequestBody String saludo) {
+   public ResponseEntity<MensajesResponse> editMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo,@ApiParam(value = "Nuevo saludo" ,required=true )  @Valid @RequestBody String saludo) {
     	final MensajesResponse modificacionMensaje = this.saludoService.actualizarMensaje(idSaludo, saludo);
         return new ResponseEntity<MensajesResponse>(modificacionMensaje,HttpStatus.NOT_IMPLEMENTED);
     }
