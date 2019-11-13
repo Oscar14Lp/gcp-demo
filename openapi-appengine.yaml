@@ -59,7 +59,88 @@ paths:
             items:
               $ref: "#/definitions/MensajesResponse"
       security:
-      - api_key: []      
+      - api_key: []
+  /mensajes/{id_saludo}:
+    get:
+      tags:
+      - "mensajes"
+      summary: "Busca un mensaje por su id"
+      description: "Regresa un mensaje"
+      operationId: "getMessageById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_saludo"
+        in: "path"
+        description: "Id del mensaje a regresar"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200: 
+          description: "Operacion exitosa"
+        400: 
+          description: "Error al realizar la operacion"
+        404: 
+          description: "Mensaje no encontrado"
+      security:
+      - api_key: []
+    put:
+      tags:
+      - "mensajes"
+      summary: "Edita los mensajes de saludo"
+      description: "Edita mensajes"
+      operationId: "editMessageById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_saludo"
+        in: "path"
+        type: "integer"
+        format: "int64"
+        description: " "
+        required: true
+      - name: "Saludo"
+        in: "body"
+        description: "Nuevo saludo"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        201: 
+          description: "Operacion exitosa"
+        404: 
+          description: "No encontrado"
+        400: 
+          description: "Error al realizar la operacion"
+      security:
+      - api_key: []
+    delete:
+      tags:
+      - "mensajes"
+      summary: "Elimina los mensajes de saludo"
+      description: "Elimina mensajes"
+      operationId: "deleteMessageById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id_saludo"
+        in: "path"
+        type: "integer"
+        format: "int64"
+        description: " "
+        required: true
+      responses:
+        200: 
+          description: "Operacion exitosa"
+        404: 
+          description: "No encontrado"
+        400: 
+          description: "Error al realizar la operacion"
+      security:
+        - api_key: []
 securityDefinitions:
   api_key:
     type: "apiKey"

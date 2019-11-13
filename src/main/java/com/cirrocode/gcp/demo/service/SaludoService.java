@@ -15,4 +15,10 @@ public interface SaludoService
     List<MensajesResponse> leerMensajesBigQuery();
     
     List<MensajesResponse> leerMensajesPostgres();
+
+	MensajesResponse obtenerMensaje(Long idSaludo);
+	
+	MensajesResponse eliminarMensaje(Long idSaludo);
+	
+	MensajesResponse actualizarMensaje(Long idSaludo, String saludo);
 }

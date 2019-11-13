@@ -91,4 +91,38 @@ public class SaludoServiceImpl implements SaludoService
         
     	return results;
     }
+    
+    @Override
+    public MensajesResponse obtenerMensaje(Long idSaludo) {
+    	Saludo saludo= this.saludoRepository.findOne(Math.toIntExact(idSaludo));
+    	final MensajesResponse mensaje = new MensajesResponse();
+    	mensaje.setMensaje(saludo.getMensaje());  	
+    	return mensaje;
+    }
+
+	@Override
+	public MensajesResponse eliminarMensaje(Long idSaludo) {
+		try {
+			this.saludoRepository.delete(Math.toIntExact(idSaludo));
+			MensajesResponse mensaje = new MensajesResponse();
+	    	mensaje.setMensaje("Saludo eliminado");
+			return mensaje;
+		}catch (Exception e) {
+			MensajesResponse mensaje = new MensajesResponse();
+	    	mensaje.setMensaje("Error al eliminar el saludo" + e.toString());
+	    	return mensaje;
+		}
+	}
+
+	@Override
+	public MensajesResponse actualizarMensaje(Long idSaludo, String saludo) {
+		Saludo saludoAnterior= this.saludoRepository.findOne(Math.toIntExact(idSaludo));
+		saludoAnterior.setMensaje(saludo);
+		this.saludoRepository.save(saludoAnterior);
+		MensajesResponse mensaje = new MensajesResponse();
+    	mensaje.setMensaje("Saludo Actualizado");
+    	return mensaje;
+	}
+	
+	
 }
