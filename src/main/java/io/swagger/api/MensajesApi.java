@@ -50,19 +50,6 @@ public interface MensajesApi {
         ResponseEntity<MensajesResponse> editMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo,@ApiParam(value = "Nuevo saludo" ,required=true )  @Valid @RequestBody String saludo);
 
 
-    @ApiOperation(value = "Edita los mensajes de saludo", nickname = "editMessageById", notes = "Edita mensajes", authorizations = {
-        @Authorization(value = "api_key")
-    }, tags={ "mensajes", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Operacion exitosa"),
-        @ApiResponse(code = 400, message = "Error al realizar la operacion"),
-        @ApiResponse(code = 404, message = "No encontrado") })
-    @RequestMapping(value = "/mensajes/{id_saludo}",
-        produces = { "application/json" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<Void> editMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo);
-
-
     @ApiOperation(value = "Busca un mensaje por su id", nickname = "getMessageById", notes = "Regresa un mensaje", authorizations = {
         @Authorization(value = "api_key")
     }, tags={ "mensajes", })
