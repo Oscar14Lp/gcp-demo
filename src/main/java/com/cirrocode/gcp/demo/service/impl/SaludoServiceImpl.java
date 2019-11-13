@@ -31,7 +31,7 @@ public class SaludoServiceImpl implements SaludoService
     
     @Autowired private SaludoRepository saludoRepository;
     @Autowired private MensajesBigQueryDAO mensajesBigQueryDAO;
-    @Autowired private LoggingComponent loggingComponent;
+    //@Autowired private LoggingComponent loggingComponent;
     
     @Override
     @Transactional(rollbackFor = Throwable.class)
@@ -50,7 +50,7 @@ public class SaludoServiceImpl implements SaludoService
         response.setMensaje(mensaje);
         
         // Registrar en logging de StackDriver - Exporta a BigQuery
-        this.loggingComponent.escribirMensajeLog(response);
+        //this.loggingComponent.escribirMensajeLog(response);
         
         return response;
     }

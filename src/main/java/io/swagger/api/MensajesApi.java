@@ -62,7 +62,16 @@ public interface MensajesApi {
         method = RequestMethod.GET)
     ResponseEntity<MensajesResponse> getMessageById(@ApiParam(value = "Id del mensaje a regresar",required=true) @PathVariable("id_saludo") Long idSaludo);
 
-
-
+    @ApiOperation(value = "Elimina los mensajes de saludo", nickname = "deleteMessageById", notes = "Elimina mensajes", authorizations = {
+            @Authorization(value = "api_key")
+        }, tags={ "mensajes", })
+        @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Operacion exitosa"),
+            @ApiResponse(code = 400, message = "Error al realizar la operacion"),
+            @ApiResponse(code = 404, message = "No encontrado") })
+        @RequestMapping(value = "/mensajes/{id_saludo}",
+            produces = { "application/json" },
+            method = RequestMethod.DELETE)
+        ResponseEntity<MensajesResponse> deleteMessageById(@ApiParam(value = " ",required=true) @PathVariable("id_saludo") Long idSaludo);
     
 }

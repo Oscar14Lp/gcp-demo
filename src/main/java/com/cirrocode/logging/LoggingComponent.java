@@ -30,7 +30,7 @@ public class LoggingComponent
     private LoggingOptions options;
     private Logging logging;
 
-    @PostConstruct
+    //@PostConstruct
     public void init()
     {
         this.options = LoggingOptions.getDefaultInstance();
