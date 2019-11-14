@@ -121,8 +121,6 @@ paths:
       summary: "Elimina los mensajes de saludo"
       description: "Elimina mensajes"
       operationId: "deleteMessageById"
-      consumes:
-      - "application/json"
       produces:
       - "application/json"
       parameters:
